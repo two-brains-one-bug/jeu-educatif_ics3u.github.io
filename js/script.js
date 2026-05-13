@@ -1,202 +1,277 @@
- /*
- var a100 = document.getElementById("a100").value;
- var a200 = document.getElementById("a200").value;
- var a300 = document.getElementById("a300").value;
- var a400 = document.getElementById("a400").value;
- var a500 = document.getElementById("a500").value;
- 
- var b100 = document.getElementById("b100").value;
- var b200 = document.getElementById("b200").value;
- var b300 = document.getElementById("b300").value;
- var b400 = document.getElementById("b400").value;
- var b500 = document.getElementById("b500").value;
- 
- var c100 = document.getElementById("c100").value;
- var c200 = document.getElementById("c200").value;
- var c300 = document.getElementById("c300").value;
- var c400 = document.getElementById("c400").value;
- var c500 = document.getElementById("c500").value;
- 
- var d100 = document.getElementById("d100").value;
- var d200 = document.getElementById("d200").value;
- var d300 = document.getElementById("d300").value;
- var d400 = document.getElementById("d400").value;
- var d500 = document.getElementById("d500").value;
- 
- var e100 = document.getElementById("e100").value;
- var e200 = document.getElementById("e200").value;
- var e300 = document.getElementById("e300").value;
- var e400 = document.getElementById("e400").value;
- var e500 = document.getElementById("e500").value; 
- */
- 
- 
- /* <button type = "button" button class="jeopardy-button" onclick="play()" id="a100">$100</button>
-    if (id ==='a100') {
-         
-         alert("a100 woorrrrksss");
-         
-     }
- */
- 
- 
- 
- alert("Test fichier JS.");
- 
- function play() {
-     
-     var message = ""
-     if (id ==='a100') {
-         
-         message = "a100"
-         
-         
-     }
-     
-     else if (id ==='a200') {
-         
-         
-         
-     }
-     
-     else if (id ==='a300') {
-         
-         
-         
-     }
-     
-     else if (id ==='a400') {
-         
-         
-         
-     }
-     
-     else if (id ==='a500') {
-         
-         
-         
-     }
-     
-     else if (id ==='b100') {
-         
-         
-         
-     }
-     
-     else if (id ==='b200') {
-         
-         
-         
-     }
-     
-     else if (id ==='b300') {
-         
-         
-         
-     }
-     
-     else if (id ==='b400') {
-         
-         
-         
-     }
-     
-     else if (id ==='b500') {
-         
-         
-         
-     }
-     
-     else if (id ==='c100') {
-         
-         
-         
-     }
-     
-     else if (id ==='c200') {
-         
-         
-         
-     }
-     
-     else if (id ==='c300') {
-         
-         
-         
-     }
-     
-     else if (id ==='c400') {
-         
-         
-         
-     }
-     
-     else if (id ==='c500') {
-         
-         
-         
-     }
-     
-     else if (id ==='d100') {
-         
-         
-         
-     }
-     
-     else if (id ==='d200') {
-         
-         
-         
-     }
-     
-     else if (id ==='d300') {
-         
-         
-         
-     }
-     
-     else if (id ==='d400') {
-         
-         
-         
-     }
-     
-     else if (id ==='d500') {
-         
-         
-         
-     }
-     
-     else if (id ==='e100') {
-         
-         
-         
-     }
-     
-     else if (id ==='e200') {
-         
-         
-         
-     }
-     
-     else if (id ==='e300') {
-         
-         
-         
-     }
-     
-     else if (id ==='e400') {
-         
-         
-         
-     }
-     
-     else if (id ==='e500') {
-         
-         
-         
-     }
-     
-     affiche.innerHTML = message;
-     
- }
+//Rend les questions et les points des équipes à zéro, et fait que l'équipe 1 commence
+let questionActuelle = "";
+let pointsActuels = 0;
+
+let equipeActuelle = 1;
+
+let score1 = 0;
+let score2 = 0;
+
+
+//Assigne les questions à leurs sujets (Chatgpt utilisé pour les questions)
+//Ajouter un système pour changer les questions possibles pour qu'ils ne soient pas toujours constantes
+
+const questions = {
+
+    // SCIENCE
+
+    science100:{
+        titre:"Science 100",
+        question:"Quelle planète est rouge?",
+        reponse:"mars"
+    },
+
+    science200:{
+        titre:"Science 200",
+        question:"Quel gaz respirons-nous?",
+        reponse:"oxygène"
+    },
+
+    science300:{
+        titre:"Science 300",
+        question:"Qu'est-ce que H2O?",
+        reponse:"eau"
+    },
+
+    science400:{
+        titre:"Science 400",
+        question:"Quelle force nous garde au sol?",
+        reponse:"gravité"
+    },
+
+    science500:{
+        titre:"Science 500",
+        question:"Centre d'un atome?",
+        reponse:"noyau"
+    },
+
+    // MATH
+
+    math100:{
+        titre:"Math 100",
+        question:"10 + 5 = ?",
+        reponse:"15"
+    },
+
+    math200:{
+        titre:"Math 200",
+        question:"9 × 7 = ?",
+        reponse:"63"
+    },
+
+    math300:{
+        titre:"Math 300",
+        question:"Racine carrée de 64?",
+        reponse:"8"
+    },
+
+    math400:{
+        titre:"Math 400",
+        question:"5x = 25, x = ?",
+        reponse:"5"
+    },
+
+    math500:{
+        titre:"Math 500",
+        question:"15% de 300?",
+        reponse:"45"
+    },
+
+    // HTML
+
+    html100:{
+        titre:"HTML 100",
+        question:"Que signifie HTML?",
+        reponse:"hypertext markup language"
+    },
+
+    html200:{
+        titre:"HTML 200",
+        question:"Balise pour paragraphe? (Avec <>)",
+        reponse:"<p>"
+    },
+
+    html300:{
+        titre:"HTML 300",
+        question:"Balise pour lien? (Avec <>)",
+        reponse:"<a>"
+    },
+
+    html400:{
+        titre:"HTML 400",
+        question:"Balise pour image? (Avec <>)",
+        reponse:"<img>"
+    },
+
+    html500:{
+        titre:"HTML 500",
+        question:"Section des métadonnées? (Avec <>)",
+        reponse:"<head>"
+    },
+
+    // CSS
+
+    css100:{
+        titre:"CSS 100",
+        question:"Propriété couleur du texte?",
+        reponse:"color"
+    },
+
+    css200:{
+        titre:"CSS 200",
+        question:"Couleur de fond?",
+        reponse:"background-color"
+    },
+
+    css300:{
+        titre:"CSS 300",
+        question:"Taille du texte?",
+        reponse:"font-size"
+    },
+
+    css400:{
+        titre:"CSS 400",
+        question:"Système lignes/colonnes?",
+        reponse:"grid"
+    },
+
+    css500:{
+        titre:"CSS 500",
+        question:"Coins arrondis?",
+        reponse:"border-radius"
+    },
+
+    // JAVASCRIPT
+
+    js100:{
+        titre:"JavaScript 100",
+        question:"Mot-clé pour variable?",
+        reponse:"let"
+    },
+
+    js200:{
+        titre:"JavaScript 200",
+        question:"Fonction console? (Avec parenthèses)",
+        reponse:"console.log()"
+    },
+
+    js300:{
+        titre:"JavaScript 300",
+        question:"Fonction popup? (Avec parenthèses)",
+        reponse:"alert()"
+    },
+
+    js400:{
+        titre:"JavaScript 400",
+        question:"Événement de clic?",
+        reponse:"onclick"
+    },
+
+    js500:{
+        titre:"JavaScript 500",
+        question:"Boucle qui répète pendant que?",
+        reponse:"while"
+    }
+
+};
+
+
+//Ouvre la question une fois que'elle a été sélectionnée
+function ouvrirQuestion(id, points){
+
+    questionActuelle = id;
+    pointsActuels = points;
+
+    document.getElementById("pagePlateau").style.display =
+        "none";
+
+    document.getElementById("pageQuestion").style.display =
+        "block";
+
+    document.getElementById("titreQuestion").innerText =
+        questions[id].titre;
+
+    document.getElementById("texteQuestion").innerText =
+        questions[id].question;
+
+    document.getElementById("reponseUtilisateur").value =
+        "";
+
+    document.getElementById("resultat").innerText =
+        "";
+}
+
+
+//Comare la réponse au résultat voulu
+function verifierReponse(){
+
+    let reponse =
+        document.getElementById("reponseUtilisateur")
+        .value
+        .toLowerCase();
+
+    if(reponse === questions[questionActuelle].reponse){
+
+        document.getElementById("resultat").innerText =
+            "Bonne réponse!";
+
+        ajouterPoints();
+    }
+    else{
+
+        document.getElementById("resultat").innerText =
+            "Mauvaise réponse!";
+    }
+}
+
+
+//Ajoute les points si la bonne réponse a été soumise
+function ajouterPoints(){
+    
+//Pour l'équipe 1
+    if(equipeActuelle === 1){
+
+        score1 = score1 + pointsActuels;
+
+        document.getElementById("score1").innerText =
+            score1;
+
+        equipeActuelle = 2;
+
+        document.getElementById("tour1").innerText = "";
+
+        document.getElementById("tour2").innerText =
+            "RÉPOND";
+    }
+    else{
+        
+//Pour l'équipe 2
+
+        score2 = score2 + pointsActuels;
+
+        document.getElementById("score2").innerText =
+            score2;
+
+        equipeActuelle = 1;
+
+        document.getElementById("tour2").innerText = "";
+
+        document.getElementById("tour1").innerText =
+            "RÉPOND";
+    }
+
+    document.getElementById(questionActuelle)
+        .classList.add("used");
+
+    setTimeout(retourPlateau, 1000);
+}
+
+//Retourne l'utilisateur au plateau de jeu original
+function retourPlateau(){
+
+    document.getElementById("pageQuestion").style.display =
+        "none";
+
+    document.getElementById("pagePlateau").style.display =
+        "block";
+}
