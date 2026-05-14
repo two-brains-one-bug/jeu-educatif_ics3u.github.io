@@ -8,14 +8,31 @@ let score1 = 0;
 let score2 = 0;
 
 
-//Assigne les questions à leurs sujets (Chatgpt utilisé pour les questions)
-//Ajouter un système pour changer les questions possibles pour qu'ils ne soient pas toujours constantes
 
-const questions = {
+//Chatgpt utilisé pour les questions demandées, cette variable va inclure toutes les questions qui vont être demandées
+var questions = "";
+
+
+/* Je n'étais pas sûr entre avoir des questions individuelles qui cyclent ou le jeu entier, mais les questions 
+individuelles prendront trop de temps et seront seulement implémenté si il y a du temps. Si vous lisez ce
+commentaire, il n'y avait pas de temps */
+
+//Crée une variable qui va décider entre plusieurs options différents pour les questions
+//(chaque option va mener à un questionnaire différent avec la mêmes thèmes mais des questions qui diffèrent.)
+var questionsChoix = (Math.random() * 10);
+alert(questionsChoix)
+
+
+//Premier option des questions
+if (questionsChoix <= 2) {
+    
+    alert("Cycle 1 des questions!");
+    
+    questions = {
 
     // SCIENCE
 
-    science100:{
+    science100:{ 
         titre:"Science 100",
         question:"Quelle planète est rouge?",
         reponse:"mars"
@@ -23,25 +40,25 @@ const questions = {
 
     science200:{
         titre:"Science 200",
-        question:"Quel gaz respirons-nous?",
-        reponse:"oxygène"
+        question:"Le gaz que nous respirons est: ",
+        reponse:"l'oxygène"
     },
 
     science300:{
         titre:"Science 300",
-        question:"Qu'est-ce que H2O?",
-        reponse:"eau"
+        question:"Qu'est-ce que l'H2O?",
+        reponse:"l'eau"
     },
 
     science400:{
         titre:"Science 400",
-        question:"Quelle force nous garde au sol?",
+        question:"La force qui nous garde au sol est la: ",
         reponse:"gravité"
     },
 
     science500:{
         titre:"Science 500",
-        question:"Centre d'un atome?",
+        question:"Le centre d'un atome est le: ",
         reponse:"noyau"
     },
 
@@ -145,7 +162,7 @@ const questions = {
 
     js100:{
         titre:"JavaScript 100",
-        question:"Mot-clé pour variable?",
+        question:"Mot-clé pour variable, autre que var?",
         reponse:"let"
     },
 
@@ -175,19 +192,713 @@ const questions = {
 
 };
 
+}
+
+
+
+//Deuxième cycle de questions
+
+else if (questionsChoix > 2 && questionsChoix <= 4) {
+    questions = {
+
+            // SCIENCE
+        
+        science100:{
+            titre:"Science 100",
+            question:"L'organe qui pompe le sang est le:",
+            reponse:"coeur"
+        },
+        
+        science200:{
+            titre:"Science 200",
+            question:"L'état solide de l'eau est la:",
+            reponse:"glace"
+        },
+        
+        science300:{
+            titre:"Science 300",
+            question:"Quelle étoile éclaire la Terre?",
+            reponse:"soleil"
+        },
+        
+        science400:{
+            titre:"Science 400",
+            question:"Quel gaz les plantes absorbent-elles?",
+            reponse:"dioxyde de carbone"
+        },
+        
+        science500:{
+            titre:"Science 500",
+            question:"Instrument pour observer les étoiles?",
+            reponse:"télescope"
+        },
+        
+        // MATH
+        
+        math100:{
+            titre:"Math 100",
+            question:"20 - 8 = ?",
+            reponse:"12"
+        },
+        
+        math200:{
+            titre:"Math 200",
+            question:"6 × 6 = ?",
+            reponse:"36"
+        },
+        
+        math300:{
+            titre:"Math 300",
+            question:"100 ÷ 4 = ?",
+            reponse:"25"
+        },
+        
+        math400:{
+            titre:"Math 400",
+            question:"7x = 49, x = ?",
+            reponse:"7"
+        },
+        
+        math500:{
+            titre:"Math 500",
+            question:"25% de 200?",
+            reponse:"50"
+        },
+        
+        // HTML
+        
+        
+        html100:{
+            titre:"HTML 100",
+            question:"Balise pour créer une liste ordonnée? (Avec <>)",
+            reponse:"<ol>"
+        },
+        
+        html200:{
+            titre:"HTML 200",
+            question:"Balise pour une cellule de tableau? (Avec <>)",
+            reponse:"<td>"
+        },
+        
+        html300:{
+            titre:"HTML 300",
+            question:"Balise pour une ligne de tableau? (Avec <>)",
+            reponse:"<tr>"
+        },
+        
+        html400:{
+            titre:"HTML 400",
+            question:" (Avec <>)",
+            reponse:""
+        },
+        
+        html500:{
+            titre:"HTML 500",
+            question:"Balise pour  (Avec <>)",
+            reponse:""
+        },
+        
+        // CSS
+        
+        css100:{
+            titre:"CSS 100",
+            question:"Propriété pour rendre le texte gras?",
+            reponse:"font-weight"
+        },
+        
+        css200:{
+            titre:"CSS 200",
+            question:"Propriété pour changer la police?",
+            reponse:"font-family"
+        },
+        
+        css300:{
+            titre:"CSS 300",
+            question:"Propriété pour cacher un élément?",
+            reponse:"display"
+        },
+        
+        css400:{
+            titre:"CSS 400",
+            question:"Valeur CSS pour affichage flexible?",
+            reponse:"flex"
+        },
+        
+        css500:{
+            titre:"CSS 500",
+            question:"Propriété pour ajouter une animation?",
+            reponse:"animation"
+        },
+        
+        // JAVASCRIPT
+        
+        js100:{
+            titre:"JavaScript 100",
+            question:"Mot-clé pour une fonction?",
+            reponse:"function"
+        },
+        
+        js200:{
+            titre:"JavaScript 200",
+            question:"Méthode pour sélectionner un élément par id?",
+            reponse:"getElementById"
+        },
+        
+        js300:{
+            titre:"JavaScript 300",
+            question:"Fonction pour convertir en texte JSON?",
+            reponse:"JSON.stringify"
+        },
+        
+        js400:{
+            titre:"JavaScript 400",
+            question:"Boucle pour parcourir un tableau?",
+            reponse:"for"
+        },
+        
+        js500:{
+            titre:"JavaScript 500",
+            question:"Méthode pour ajouter à la fin d'un tableau?",
+            reponse:"push"
+        }
+    
+    };
+
+}
+
+
+//Troisième cycle de questions
+
+else if (questionsChoix > 4 && questionsChoix <= 6) {
+    
+    questions = {
+
+    // SCIENCE
+
+science100:{
+    titre:"Science 100",
+    question:"Quel organe utilise-t-on pour respirer?",
+    reponse:"poumons"
+},
+
+science200:{
+    titre:"Science 200",
+    question:"Quelle planète est la plus proche du Soleil?",
+    reponse:"mercure"
+},
+
+science300:{
+    titre:"Science 300",
+    question:"Quel animal est le plus grand mammifère?",
+    reponse:"baleine bleue"
+},
+
+science400:{
+    titre:"Science 400",
+    question:"Quel métal est attiré par un aimant?",
+    reponse:"fer"
+},
+
+science500:{
+    titre:"Science 500",
+    question:"Quel scientifique a proposé la théorie de la relativité?",
+    reponse:"einstein"
+},
+
+// MATH
+
+math100:{
+    titre:"Math 100",
+    question:"7 + 6 = ?",
+    reponse:"13"
+},
+
+math200:{
+    titre:"Math 200",
+    question:"12 × 5 = ?",
+    reponse:"60"
+},
+
+math300:{
+    titre:"Math 300",
+    question:"81 ÷ 9 = ?",
+    reponse:"9"
+},
+
+math400:{
+    titre:"Math 400",
+    question:"9x = 81, x = ?",
+    reponse:"9"
+},
+
+math500:{
+    titre:"Math 500",
+    question:"30% de 150?",
+    reponse:"45"
+},
+
+// HTML
+
+html100:{
+    titre:"HTML 100",
+    question:"Balise pour créer une ligne horizontale? (Avec <>)",
+    reponse:"<hr>"
+},
+
+html200:{
+    titre:"HTML 200",
+    question:"Balise pour texte important? (Avec <>)",
+    reponse:"<strong>"
+},
+
+html300:{
+    titre:"HTML 300",
+    question:"Balise pour liste ordonnée? (Avec <>)",
+    reponse:"<ol>"
+},
+
+html400:{
+    titre:"HTML 400",
+    question:"Attribut pour une image source?",
+    reponse:"src"
+},
+
+html500:{
+    titre:"HTML 500",
+    question:"Balise contenant le contenu visible? (Avec <>)",
+    reponse:"<body>"
+},
+
+// CSS
+
+css100:{
+    titre:"CSS 100",
+    question:"Propriété pour aligner le texte?",
+    reponse:"text-align"
+},
+
+css200:{
+    titre:"CSS 200",
+    question:"Propriété pour changer la bordure?",
+    reponse:"border"
+},
+
+css300:{
+    titre:"CSS 300",
+    question:"Propriété pour transformer le texte en majuscules?",
+    reponse:"text-transform"
+},
+
+css400:{
+    titre:"CSS 400",
+    question:"Valeur CSS pour cacher un élément?",
+    reponse:"none"
+},
+
+css500:{
+    titre:"CSS 500",
+    question:"Propriété pour contrôler l'ordre d'empilement?",
+    reponse:"z-index"
+},
+
+// JAVASCRIPT
+
+js100:{
+    titre:"JavaScript 100",
+    question:"Mot-clé pour créer une classe?",
+    reponse:"class"
+},
+
+js200:{
+    titre:"JavaScript 200",
+    question:"Méthode pour ajouter un événement?",
+    reponse:"addEventListener"
+},
+
+js300:{
+    titre:"JavaScript 300",
+    question:"Objet représentant la page web?",
+    reponse:"document"
+},
+
+js400:{
+    titre:"JavaScript 400",
+    question:"Méthode pour convertir une chaîne en nombre décimal?",
+    reponse:"parseFloat"
+},
+
+js500:{
+    titre:"JavaScript 500",
+    question:"Mot-clé pour gérer les erreurs?",
+    reponse:"try"
+}
+
+};
+
+}
+
+
+
+
+//Quatrième cycle de questions
+
+else if (questionsChoix > 6 && questionsChoix <= 8) {
+    
+    questions = {
+
+// SCIENCE
+
+science100:{
+    titre:"Science 100",
+    question:"Quel est l'organe de la vision?",
+    reponse:"oeil"
+},
+
+science200:{
+    titre:"Science 200",
+    question:"Combien de pattes a une araignée?",
+    reponse:"8"
+},
+
+science300:{
+    titre:"Science 300",
+    question:"Quel gaz produit le feu pour brûler?",
+    reponse:"oxygène"
+},
+
+science400:{
+    titre:"Science 400",
+    question:"Quel est le satellite naturel de la Terre?",
+    reponse:"lune"
+},
+
+science500:{
+    titre:"Science 500",
+    question:"Quel instrument mesure la température?",
+    reponse:"thermomètre"
+},
+
+// MATH
+
+math100:{
+    titre:"Math 100",
+    question:"14 + 9 = ?",
+    reponse:"23"
+},
+
+math200:{
+    titre:"Math 200",
+    question:"11 × 11 = ?",
+    reponse:"121"
+},
+
+math300:{
+    titre:"Math 300",
+    question:"144 ÷ 12 = ?",
+    reponse:"12"
+},
+
+math400:{
+    titre:"Math 400",
+    question:"4x = 36, x = ?",
+    reponse:"9"
+},
+
+math500:{
+    titre:"Math 500",
+    question:"50% de 90?",
+    reponse:"45"
+},
+
+// HTML
+
+html100:{
+    titre:"HTML 100",
+    question:"Balise pour texte en italique? (Avec <>)",
+    reponse:"<i>"
+},
+
+html200:{
+    titre:"HTML 200",
+    question:"Balise pour créer un tableau? (Avec <>)",
+    reponse:"<table>"
+},
+
+html300:{
+    titre:"HTML 300",
+    question:"Balise pour une division? (Avec <>)",
+    reponse:"<div>"
+},
+
+html400:{
+    titre:"HTML 400",
+    question:"Balise pour une liste élément? (Avec <>)",
+    reponse:"<li>"
+},
+
+html500:{
+    titre:"HTML 500",
+    question:"Attribut pour identifier un élément unique?",
+    reponse:"id"
+},
+
+// CSS
+
+css100:{
+    titre:"CSS 100",
+    question:"Propriété pour changer la couleur de fond?",
+    reponse:"background-color"
+},
+
+css200:{
+    titre:"CSS 200",
+    question:"Propriété pour espacer les lettres?",
+    reponse:"letter-spacing"
+},
+
+css300:{
+    titre:"CSS 300",
+    question:"Propriété pour mettre une ombre sur une boîte?",
+    reponse:"box-shadow"
+},
+
+css400:{
+    titre:"CSS 400",
+    question:"Valeur CSS pour position absolue?",
+    reponse:"absolute"
+},
+
+css500:{
+    titre:"CSS 500",
+    question:"Propriété pour changer la vitesse d'une transition?",
+    reponse:"transition-duration"
+},
+
+// JAVASCRIPT
+
+js100:{
+    titre:"JavaScript 100",
+    question:"Mot-clé pour une condition alternative?",
+    reponse:"else"
+},
+
+js200:{
+    titre:"JavaScript 200",
+    question:"Méthode pour afficher une boîte de confirmation?",
+    reponse:"confirm()"
+},
+
+js300:{
+    titre:"JavaScript 300",
+    question:"Méthode pour joindre deux chaînes?",
+    reponse:"concat"
+},
+
+js400:{
+    titre:"JavaScript 400",
+    question:"Événement déclenché lors du chargement de la page?",
+    reponse:"onload"
+},
+
+js500:{
+    titre:"JavaScript 500",
+    question:"Structure utilisée pour capturer une erreur?",
+    reponse:"catch"
+}
+    
+};
+
+}
+
+
+//Cinquième cycle de questions
+
+else if (questionsChoix > 8 && questionsChoix <= 10) {
+    
+    questions = {
+
+   // SCIENCE
+
+science100:{
+    titre:"Science 100",
+    question:"Quel organe sert à entendre?",
+    reponse:"oreille"
+},
+
+science200:{
+    titre:"Science 200",
+    question:"Quel animal pond des oeufs?",
+    reponse:"poule"
+},
+
+science300:{
+    titre:"Science 300",
+    question:"Quelle planète possède des anneaux?",
+    reponse:"saturne"
+},
+
+science400:{
+    titre:"Science 400",
+    question:"Comment appelle-t-on les animaux qui mangent des plantes?",
+    reponse:"herbivores"
+},
+
+science500:{
+    titre:"Science 500",
+    question:"Quel appareil mesure les tremblements de terre?",
+    reponse:"sismographe"
+},
+
+// MATH
+
+math100:{
+    titre:"Math 100",
+    question:"18 - 7 = ?",
+    reponse:"11"
+},
+
+math200:{
+    titre:"Math 200",
+    question:"8 × 9 = ?",
+    reponse:"72"
+},
+
+math300:{
+    titre:"Math 300",
+    question:"49 ÷ 7 = ?",
+    reponse:"7"
+},
+
+math400:{
+    titre:"Math 400",
+    question:"6x = 54, x = ?",
+    reponse:"9"
+},
+
+math500:{
+    titre:"Math 500",
+    question:"10% de 500?",
+    reponse:"50"
+},
+
+// HTML
+
+html100:{
+    titre:"HTML 100",
+    question:"Balise pour un bouton cliquable? (Avec <>)",
+    reponse:"<button>"
+},
+
+html200:{
+    titre:"HTML 200",
+    question:"Balise pour une citation courte? (Avec <>)",
+    reponse:"<q>"
+},
+
+html300:{
+    titre:"HTML 300",
+    question:"Balise pour du texte barré? (Avec <>)",
+    reponse:"<s>"
+},
+
+html400:{
+    titre:"HTML 400",
+    question:"Balise pour sélectionner une option? (Avec <>)",
+    reponse:"<select>"
+},
+
+html500:{
+    titre:"HTML 500",
+    question:"Attribut pour afficher un texte d'aide dans un champ?",
+    reponse:"placeholder"
+},
+
+// CSS
+
+css100:{
+    titre:"CSS 100",
+    question:"Propriété pour rendre un élément transparent?",
+    reponse:"opacity"
+},
+
+css200:{
+    titre:"CSS 200",
+    question:"Propriété pour transformer un élément?",
+    reponse:"transform"
+},
+
+css300:{
+    titre:"CSS 300",
+    question:"Propriété pour changer le curseur?",
+    reponse:"cursor"
+},
+
+css400:{
+    titre:"CSS 400",
+    question:"Valeur CSS pour afficher un élément en bloc?",
+    reponse:"block"
+},
+
+css500:{
+    titre:"CSS 500",
+    question:"Propriété pour créer une transition animée?",
+    reponse:"transition"
+},
+
+// JAVASCRIPT
+
+js100:{
+    titre:"JavaScript 100",
+    question:"Mot-clé pour créer un objet?",
+    reponse:"new"
+},
+
+js200:{
+    titre:"JavaScript 200",
+    question:"Méthode pour écrire dans le HTML?",
+    reponse:"innerHTML"
+},
+
+js300:{
+    titre:"JavaScript 300",
+    question:"Méthode pour retirer le premier élément d'un tableau?",
+    reponse:"shift"
+},
+
+js400:{
+    titre:"JavaScript 400",
+    question:"Événement déclenché lors d'un changement de valeur?",
+    reponse:"onchange"
+},
+
+js500:{
+    titre:"JavaScript 500",
+    question:"Méthode pour convertir un objet en JSON?",
+    reponse:"JSON.stringify"
+}
+    
+};
+
+
+}
+
 
 //Ouvre la question une fois que'elle a été sélectionnée
 function ouvrirQuestion(id, points){
-
+    //Cherhce l'id de lq question pour vérifier laquelle a été sélectionnée
     questionActuelle = id;
+    
     pointsActuels = points;
-
+    
+    
     document.getElementById("pagePlateau").style.display =
         "none";
 
     document.getElementById("pageQuestion").style.display =
         "block";
 
+
+    //Assigne tous les éléments de la question comme le titre et le texte en cherchant ces valeurs
     document.getElementById("titreQuestion").innerText =
         questions[id].titre;
 
@@ -205,22 +916,26 @@ function ouvrirQuestion(id, points){
 //Comare la réponse au résultat voulu
 function verifierReponse(){
 
+    //Prend la réponse entrée et la met en lowercase pour la possibilité d'un mot avec des lettres différentes
     let reponse =
         document.getElementById("reponseUtilisateur")
         .value
         .toLowerCase();
 
+    //Compare la réponse soumise mise en lowercase avec la bonne réponse
     if(reponse === questions[questionActuelle].reponse){
 
+        //Bonne réponse! C'est un match! Active la focntion ajouterPoints(); pour ajouter le nombre approprié de points
         document.getElementById("resultat").innerText =
             "Bonne réponse!";
 
         ajouterPoints();
     }
     else{
-
+        
+        //Mauvaise réponse :(
         document.getElementById("resultat").innerText =
-            "Mauvaise réponse!";
+            "Mauvaise réponse! La bonne réponse était \"" +questions[questionActuelle].reponse + "\"";
     }
 }
 
@@ -228,13 +943,16 @@ function verifierReponse(){
 //Ajoute les points si la bonne réponse a été soumise
 function ajouterPoints(){
     
-//Pour l'équipe 1
-    if(equipeActuelle === 1){
 
+    if(equipeActuelle === 1){
+        
+        //Pour ajouter au score de l'équipe 1
         score1 = score1 + pointsActuels;
 
         document.getElementById("score1").innerText =
             score1;
+            
+            
 
         equipeActuelle = 2;
 
@@ -245,8 +963,7 @@ function ajouterPoints(){
     }
     else{
         
-//Pour l'équipe 2
-
+        //Pour ajouter des points à  l'équipe 2
         score2 = score2 + pointsActuels;
 
         document.getElementById("score2").innerText =
@@ -259,14 +976,26 @@ function ajouterPoints(){
         document.getElementById("tour1").innerText =
             "RÉPOND";
     }
+    
+    
+/* WIP
+    function retourMauvais(){
+    
 
+    
+
+*/
+
+
+//https://www.w3schools.com/jsref/prop_element_classlist.asp 
+//W3 schools utilisé pour cette section, démontre que le bouton a été utilisé
     document.getElementById(questionActuelle)
         .classList.add("used");
 
     setTimeout(retourPlateau, 1000);
 }
 
-//Retourne l'utilisateur au plateau de jeu original
+//Retourne l'utilisateur au plateau de jeu original pour continuer le jeu
 function retourPlateau(){
 
     document.getElementById("pageQuestion").style.display =
@@ -275,3 +1004,4 @@ function retourPlateau(){
     document.getElementById("pagePlateau").style.display =
         "block";
 }
+
