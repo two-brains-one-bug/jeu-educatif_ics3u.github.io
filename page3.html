@@ -1,33 +1,696 @@
 <!DOCTYPE HTML>
 
 <html>
-    <head>
-    <meta charset="utf-8">
-    <title>Index</title>
-    <link rel="stylesheet" href="css/boutons.css">   
+
+<head>
+
+<meta charset="utf-8">
+
+<title>Jeopardy</title>
+
+<link rel="stylesheet" href="css/boutons.css">
+
+<script src="js/script.js"></script>
+
+<style>
+
+body{
+    text-align:center;
+    color:#ffcc00;
+    font-family:Arial;
+}
+
+.questionPage{
+    display:none;
+}
+
+.grille{
+
+    display:grid;
+
+    grid-template-columns:repeat(5, 1fr);
+
+    gap:10px;
+
+    width:90%;
+
+    margin:auto;
+}
+
+.category{
+
+    background:#1a1aff;
+
+    padding:20px;
+
+    font-size:30px;
+
+    font-weight:bold;
+}
+
+
+.used{
+
+    background:#000000;
+
+    color:#ffcc00;
+
+    pointer-events:none;
+}
+
+</style>
+
+</head>
+
+<body style="background-color:#030BA3;">
+
+<!-- PAGE PLATEAU -->
+
+<div id="pagePlateau">
+
+<h1>JEOPARDY</h1>
+
+<!-- SCORES -->
+
+<div>
+
+<h2>
+
+Équipe 1 :
+<span id="score1">0</span>
+
+</h2>
+
+<div id="tour1">
+
+RÉPOND
+
+</div>
+
+<h2>
+
+Équipe 2 :
+<span id="score2">0</span>
+
+</h2>
+
+<div id="tour2"></div>
+
+</div>
+
+<br><br>
+
+<!-- GRILLE -->
+
+<div class="grille">
+
+<!-- CATÉGORIES -->
+
+<div class="category">Science</div>
+<div class="category">Math</div>
+<div class="category">HTML</div>
+<div class="category">CSS</div>
+<div class="category">JavaScript</div>
+
+<!-- 100 -->
+
+<button
+class="button-jeopardy"
+id="science100"
+onclick="ouvrirQuestion('science100',100)">
+100
+</button>
+
+<button
+class="button-jeopardy"
+id="math100"
+onclick="ouvrirQuestion('math100',100)">
+100
+</button>
+
+<button
+class="button-jeopardy"
+id="html100"
+onclick="ouvrirQuestion('html100',100)">
+100
+</button>
+
+<button
+class="button-jeopardy"
+id="css100"
+onclick="ouvrirQuestion('css100',100)">
+100
+</button>
+
+<button
+class="button-jeopardy"
+id="js100"
+onclick="ouvrirQuestion('js100',100)">
+100
+</button>
+
+<!-- 200 -->
+
+<button
+class="button-jeopardy"
+id="science200"
+onclick="ouvrirQuestion('science200',200)">
+200
+</button>
+
+<button
+class="button-jeopardy"
+id="math200"
+onclick="ouvrirQuestion('math200',200)">
+200
+</button>
+
+<button
+class="button-jeopardy"
+id="html200"
+onclick="ouvrirQuestion('html200',200)">
+200
+</button>
+
+<button
+class="button-jeopardy"
+id="css200"
+onclick="ouvrirQuestion('css200',200)">
+200
+</button>
+
+<button
+class="button-jeopardy"
+id="js200"
+onclick="ouvrirQuestion('js200',200)">
+200
+</button>
+
+<!-- 300 -->
+
+<button
+class="button-jeopardy"
+id="science300"
+onclick="ouvrirQuestion('science300',300)">
+300
+</button>
+
+<button
+class="button-jeopardy"
+id="math300"
+onclick="ouvrirQuestion('math300',300)">
+300
+</button>
+
+<button
+class="button-jeopardy"
+id="html300"
+onclick="ouvrirQuestion('html300',300)">
+300
+</button>
+
+<button
+class="button-jeopardy"
+id="css300"
+onclick="ouvrirQuestion('css300',300)">
+300
+</button>
+
+<button
+class="button-jeopardy"
+id="js300"
+onclick="ouvrirQuestion('js300',300)">
+300
+</button>
+
+<!-- 400 -->
+
+<button
+class="button-jeopardy"
+id="science400"
+onclick="ouvrirQuestion('science400',400)">
+400
+</button>
+
+<button
+class="button-jeopardy"
+id="math400"
+onclick="ouvrirQuestion('math400',400)">
+400
+</button>
+
+<button
+class="button-jeopardy"
+id="html400"
+onclick="ouvrirQuestion('html400',400)">
+400
+</button>
+
+<button
+class="button-jeopardy"
+id="css400"
+onclick="ouvrirQuestion('css400',400)">
+400
+</button>
+
+<button
+class="button-jeopardy"
+id="js400"
+onclick="ouvrirQuestion('js400',400)">
+400
+</button>
+
+<!-- 500 -->
+
+<button
+class="button-jeopardy"
+id="science500"
+onclick="ouvrirQuestion('science500',500)">
+500
+</button>
+
+<button
+class="button-jeopardy"
+id="math500"
+onclick="ouvrirQuestion('math500',500)">
+500
+</button>
+
+<button
+class="button-jeopardy"
+id="html500"
+onclick="ouvrirQuestion('html500',500)">
+500
+</button>
+
+<button
+class="button-jeopardy"
+id="css500"
+onclick="ouvrirQuestion('css500',500)">
+500
+</button>
+
+<button
+class="button-jeopardy"
+id="js500"
+onclick="ouvrirQuestion('js500',500)">
+500
+</button>
+
+</div>
+
+</div>
+
+<!-- PAGE QUESTION -->
+
+<div id="pageQuestion" class="questionPage">
+
+<h2 id="titreQuestion"></h2>
+
+<div id="texteQuestion"></div>
+
+<br><br>
+
+<input
+type="text"
+id="reponseUtilisateur"
+placeholder="Écris ta réponse">
+
+<br><br>
+
+<button class="button-jeopardy" onclick="verifierReponse()">
+
+Vérifier la réponse
+
+</button>
+
+<br><br>
+
+<div id="resultat"></div>
+
+<br>
+
+<button class="button-jeopardy" onclick="retourPlateau()">
+
+Retour au plateau
+
+</button>
+
+</div>
+
+</body>
+
+</html><!DOCTYPE HTML>
+
+<html>
+
+<head>
+
+<meta charset="utf-8">
+
+<title>Jeopardy</title>
+
+<link rel="stylesheet" href="css/boutons.css">
+
+<script src="js/script.js"></script>
+
+<style>
+
+body{
+    text-align:center;
+    color:#ffcc00;
+    font-family:Arial;
+}
+
+.questionPage{
+    display:none;
+}
+
+.grille{
+
+    display:grid;
+
+    grid-template-columns:repeat(5, 1fr);
+
+    gap:10px;
+
+    width:90%;
+
+    margin:auto;
+}
+
+.category{
+
+    background:#1a1aff;
+
+    padding:20px;
+
+    font-size:30px;
+
+    font-weight:bold;
+}
+
+
+.used{
+
+    background:#000000;
+
+    color:#ffcc00;
+
+    pointer-events:none;
+}
+
+</style>
+
+</head>
+
+<body style="background-color:#030BA3;">
+
+<!-- PAGE PLATEAU -->
+
+<div id="pagePlateau">
+
+<h1>JEOPARDY</h1>
+
+<!-- SCORES -->
+
+<div>
+
+<h2>
+
+Équipe 1 :
+<span id="score1">0</span>
+
+</h2>
+
+<div id="tour1">
+
+RÉPOND
+
+</div>
+
+<h2>
+
+Équipe 2 :
+<span id="score2">0</span>
+
+</h2>
+
+<div id="tour2"></div>
+
+</div>
+
+<h2>
     
-        <style>
-            
-            h1 {
-            font-size: 45px;
-            }
-            
-        </style>
+    Équipe 3 :
+    <span id="score3">0</span>
     
-    </head>
-    
-    <body style="background-color: #030BA3;">
-        
-        <!-- <a href="index.html"> <img src="Images/MaisonNouv.webp" width="30"/> </a> -->
-        <a href="index.html"> <img src="https://marketplace.canva.com/eGqLY/MAGPH-eGqLY/1/tl/canva-round-house-icon-MAGPH-eGqLY.png" width="30"/></a>
-        
-        
-        <center>
-            
-        <h1 style="color: #FFCC00;">Jeopardy à Quatre équipes!</h1>
-        </center>
-        
-        
-        
-        </html>
-        
+</h2>
+
+<div id="tour3"></div>
+
+</div>
+
+<br><br>
+
+<!-- GRILLE -->
+
+<div class="grille">
+
+<!-- CATÉGORIES -->
+
+<div class="category">Science</div>
+<div class="category">Math</div>
+<div class="category">HTML</div>
+<div class="category">CSS</div>
+<div class="category">JavaScript</div>
+
+<!-- 100 -->
+
+<button
+class="button-jeopardy"
+id="science100"
+onclick="ouvrirQuestion('science100',100)">
+100
+</button>
+
+<button
+class="button-jeopardy"
+id="math100"
+onclick="ouvrirQuestion('math100',100)">
+100
+</button>
+
+<button
+class="button-jeopardy"
+id="html100"
+onclick="ouvrirQuestion('html100',100)">
+100
+</button>
+
+<button
+class="button-jeopardy"
+id="css100"
+onclick="ouvrirQuestion('css100',100)">
+100
+</button>
+
+<button
+class="button-jeopardy"
+id="js100"
+onclick="ouvrirQuestion('js100',100)">
+100
+</button>
+
+<!-- 200 -->
+
+<button
+class="button-jeopardy"
+id="science200"
+onclick="ouvrirQuestion('science200',200)">
+200
+</button>
+
+<button
+class="button-jeopardy"
+id="math200"
+onclick="ouvrirQuestion('math200',200)">
+200
+</button>
+
+<button
+class="button-jeopardy"
+id="html200"
+onclick="ouvrirQuestion('html200',200)">
+200
+</button>
+
+<button
+class="button-jeopardy"
+id="css200"
+onclick="ouvrirQuestion('css200',200)">
+200
+</button>
+
+<button
+class="button-jeopardy"
+id="js200"
+onclick="ouvrirQuestion('js200',200)">
+200
+</button>
+
+<!-- 300 -->
+
+<button
+class="button-jeopardy"
+id="science300"
+onclick="ouvrirQuestion('science300',300)">
+300
+</button>
+
+<button
+class="button-jeopardy"
+id="math300"
+onclick="ouvrirQuestion('math300',300)">
+300
+</button>
+
+<button
+class="button-jeopardy"
+id="html300"
+onclick="ouvrirQuestion('html300',300)">
+300
+</button>
+
+<button
+class="button-jeopardy"
+id="css300"
+onclick="ouvrirQuestion('css300',300)">
+300
+</button>
+
+<button
+class="button-jeopardy"
+id="js300"
+onclick="ouvrirQuestion('js300',300)">
+300
+</button>
+
+<!-- 400 -->
+
+<button
+class="button-jeopardy"
+id="science400"
+onclick="ouvrirQuestion('science400',400)">
+400
+</button>
+
+<button
+class="button-jeopardy"
+id="math400"
+onclick="ouvrirQuestion('math400',400)">
+400
+</button>
+
+<button
+class="button-jeopardy"
+id="html400"
+onclick="ouvrirQuestion('html400',400)">
+400
+</button>
+
+<button
+class="button-jeopardy"
+id="css400"
+onclick="ouvrirQuestion('css400',400)">
+400
+</button>
+
+<button
+class="button-jeopardy"
+id="js400"
+onclick="ouvrirQuestion('js400',400)">
+400
+</button>
+
+<!-- 500 -->
+
+<button
+class="button-jeopardy"
+id="science500"
+onclick="ouvrirQuestion('science500',500)">
+500
+</button>
+
+<button
+class="button-jeopardy"
+id="math500"
+onclick="ouvrirQuestion('math500',500)">
+500
+</button>
+
+<button
+class="button-jeopardy"
+id="html500"
+onclick="ouvrirQuestion('html500',500)">
+500
+</button>
+
+<button
+class="button-jeopardy"
+id="css500"
+onclick="ouvrirQuestion('css500',500)">
+500
+</button>
+
+<button
+class="button-jeopardy"
+id="js500"
+onclick="ouvrirQuestion('js500',500)">
+500
+</button>
+
+</div>
+
+</div>
+
+<!-- PAGE QUESTION -->
+
+<div id="pageQuestion" class="questionPage">
+
+<h2 id="titreQuestion"></h2>
+
+<div id="texteQuestion"></div>
+
+<br><br>
+
+<input
+type="text"
+id="reponseUtilisateur"
+placeholder="Écris ta réponse">
+
+<br><br>
+
+<button class="button-jeopardy" onclick="verifierReponse()">
+
+Vérifier la réponse
+
+</button>
+
+<br><br>
+
+<div id="resultat"></div>
+
+<br>
+
+<button class="button-jeopardy" onclick="retourPlateau()">
+
+Retour au plateau
+
+</button>
+
+</div>
+
+</body>
+
+</html>
